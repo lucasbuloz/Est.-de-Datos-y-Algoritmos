@@ -1,6 +1,8 @@
 from classNodo import Nodo
 import numpy as np
 
+from collections import deque
+
 class encadenada:
     __arreglo:np.ndarray
     __cvertices:int
@@ -137,19 +139,68 @@ class encadenada:
                     actual = actual.getSig()
         return all(visitados)
        
-            
+    def aciclico(self):
+        visitados = [False] * self.__cvertices
+        pila=[(0, -1)]
         
+        while pila: #Es lo mismo decir while len(pila)>0, pregunta si está vacía o no
+            vertice, padre=pila.pop()
+            if not visitados[vertice]!=False: #Es lo mismo decir if visitados[vertice]==False, si ese vertice no está visitado(False), entra
+                visitados[vertice]=True
+                actual = self.__arreglo[vertice]
+                
+                while actual!=None:
+                    vecino = actual.getDato()
+                    if not visitados[vecino]!=False:
+                        pila.append((vecino, actual))
+                    elif vecino!=padre:
+                        return False
+                    actual = actual.getSig()
+        return True       
         
+    def BEP(self, nodo):
+        pila=[nodo]
+        visitados=[False]*self.__cvertices
+        while pila: #Es lo mismo decir while len(pila)>0, pregunta si está vacía o no
+            vertice=pila.pop()
+            if not visitados[vertice]!=False: #Es lo mismo decir if visitados[vertice]==False, si ese vertice no está visitado(False), entra
+                visitados[vertice]=True
+                actual = self.__arreglo[vertice]
+                
+                while actual!=None:
+                    vecino = actual.getDato()
+                    if not visitados[vecino]!=False:
+                        pila.append(vecino)
+                    actual = actual.getSig()
+        return all(visitados)
+    
+    def BEA(self, nodo): 
+        cola=[nodo]
+        visitados=[False]*self.__cvertices
+        
+        while cola:
+            vertice=cola.pop(0)
+            if not visitados[vertice]!=False:
+                visitados[vertice]=True
+                actual = self.__arreglo[vertice]
+                
+                while actual!=None:
+                    vecino = actual.getDato()
+                    if not visitados[vecino]!=False:
+                        cola.append(vecino)
+                    actual = actual.getSig()
+        return all(visitados)
+                    
+    
     
 if __name__== "__main__":
     e=encadenada(5)
-    
     e.insertar(0,1)
     e.insertar(0,2)
     e.insertar(0,3)
     
     e.insertar(1,3)
-    e.insertar(1,4)
+    
     
     e.insertar(2,3)
     
@@ -167,3 +218,19 @@ if __name__== "__main__":
     if e.conexo()!=False:
         print ("El grafo es conexo")
     else:  print ("El grafo no es conexo")
+    
+    if e.aciclico()!=False:
+        print ("El grafo es aciclico")
+    else:  print ("El grafo no es aciclico")
+    
+    
+    a=int(input("Ingrese un vertice para empezar la busqueda en profundidad:"))
+    if e.BEP( a)!=False:
+        print ("Todos los vertices visitados")
+    else:  print ("No todos los vertices fueron visitados")
+    
+    b=int(input("Ingrese un vertice para empezar la busqueda en amplitud:"))
+    if e.BEA( b)!=False:
+        print ("Todos los vertices visitados")
+    else:  print ("No todos los vertices fueron visitados")
+    

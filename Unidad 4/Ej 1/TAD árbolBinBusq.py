@@ -177,7 +177,6 @@ class ArbolBinarioBusqueda:
             self.nodointerior(nodo.getder())
         
 
-
 if __name__=="__main__":
     arbol = ArbolBinarioBusqueda()
     nuevo=Nodo(20)
