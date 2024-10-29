@@ -128,7 +128,7 @@ class Secuencial:
                     
                     if self.__matriz[vertice][i]==1 and not visitados[i]:
                         pila.append(i)
-
+        print (visitados)
         return all(visitados)
     
     def BEA(self, nodo):
@@ -142,18 +142,24 @@ class Secuencial:
                     
                     if self.__matriz[vertice][i]==1 and not visitados[i]:
                         pila.append(i)
+        print (visitados)
 
-        return all(visitados)
+        return all(visitados)#NO ESTA VISITANDO A TODOS LOS VERTICES, ALGO PASA CUANDO UNA FINA ES TODO 0   
 
 
 if __name__ == "__main__":
     g = Secuencial(5)
     
-    g.agregarArista(0, 3)
-    g.agregarArista(2, 4)
-    g.agregarArista(1, 3)
-    g.agregarArista(1, 4)
-    g.agregarArista(3, 0)
+    g.agregarArista(0,1)
+    g.agregarArista(0,2)
+    g.agregarArista(0,3)
+    
+    g.agregarArista(1,3)
+    g.agregarArista(1,4)
+    g.agregarArista(2,3)
+    g.agregarArista(3,4)
+    g.agregarArista(4,1)
+    #g.agregarArista(4,0) #SI LA COLUMNA DEL 0 ES TODO 0, NO RECORRE TODOS LOS VERTUCES
     
     g.mostrar()
     g.adyacentes(2)

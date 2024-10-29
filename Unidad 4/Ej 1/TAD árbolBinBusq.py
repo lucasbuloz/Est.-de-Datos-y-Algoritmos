@@ -9,18 +9,18 @@ class ArbolBinarioBusqueda:
     def getraiz(self):
         return self.__raiz
     
-    def insertar (self,xraiz, Nodo):
+    def insertar (self,xraiz, nuevo):
         if xraiz is None:
-            self.__raiz=Nodo
+            self.__raiz=nuevo
         else:
-            if Nodo.get_dato()<xraiz.get_dato():
+            if nuevo.get_dato()<xraiz.get_dato():
                 if xraiz.getizq()==None:
-                    xraiz.setizq(Nodo)
-                else: self.insertar(xraiz.getizq(), Nodo)
-            elif Nodo.get_dato()>xraiz.get_dato():
+                    xraiz.setizq(nuevo)
+                else: self.insertar(xraiz.getizq(), nuevo)
+            elif nuevo.get_dato()>xraiz.get_dato():
                 if xraiz.getder()==None:
-                    xraiz.setder(Nodo)
-                else: self.insertar(xraiz.getder(), Nodo)
+                    xraiz.setder(nuevo)
+                else: self.insertar(xraiz.getder(), nuevo)
                 
     
     def buscar(self,xraiz, valor):
@@ -91,7 +91,7 @@ class ArbolBinarioBusqueda:
         if xraiz == None:
             return False
         elif xraiz.get_dato() == hijo:
-            return padre.get_dato() if padre != None else None 
+            return padre.get_dato() if padre != None else None
         elif hijo < xraiz.get_dato():
             return self.padre(xraiz.getizq(), hijo, xraiz)
         else:
@@ -120,10 +120,13 @@ class ArbolBinarioBusqueda:
         else:
             alturaIzquierda = self.altura(xraiz.getizq())
             alturaDerecha = self.altura(xraiz.getder())
-            return max(alturaIzquierda, alturaDerecha) + 1
+            if alturaIzquierda > alturaDerecha:
+                return alturaIzquierda + 1
+            else:
+                return alturaDerecha + 1
             
     def inorden(self,nodo):
-        if nodo is not None:
+        if nodo != None:
             self.inorden(nodo.getizq())
             print(nodo.get_dato())
             self.inorden(nodo.getder())
@@ -193,18 +196,22 @@ if __name__=="__main__":
     arbol.insertar(arbol.getraiz(), nuevo)
     nuevo=Nodo(9)
     arbol.insertar(arbol.getraiz(), nuevo)
-    nuevo=Nodo(14)
+    nuevo=Nodo(4)
     arbol.insertar(arbol.getraiz(), nuevo)
+
     
    
    
     arbol.inorden(arbol.getraiz())
-    """print (f"El 9 es hoja: {arbol.hoja(9)}")
+    print (f"El 9 es hoja: {arbol.hoja(9)}")
     print (f"El 20 es hoja: {arbol.hoja(20)}")
+    print (f"El nivel de 9: {arbol.nivel(arbol.getraiz(),9,0)}")
     
+    print (f"El camino a 9: {arbol.camino( 9)}")
+    print (f"ALtura del arbol: {arbol.altura(arbol.getraiz())}")
     
     print (f"El 9 es hijo de 10: {arbol.hijo(10, 9)}")
-    print (f"El padre de 9 es: {arbol.padre(arbol.getraiz(),9, None)}")"""
+    print (f"El padre de 10 es: {arbol.padre(arbol.getraiz(),10, None)}")
     
     print ("--------")
     arbol.mostrarfrontera(arbol.getraiz())
