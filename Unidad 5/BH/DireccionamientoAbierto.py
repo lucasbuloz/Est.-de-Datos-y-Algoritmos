@@ -46,12 +46,13 @@ class DireccionamientoAbierto:
         if self.__tabla[indice]==clave:
             print(f"Se encontró {clave} en la posición {indice}")
         else:
-            while self.__tabla[indice] != clave:
+            while self.__tabla[indice] != clave and contador<self.__tamaño:
                 contador+=1
                 indice = (indice + 1) % self.__tamaño
-                if contador==self.__tamaño:
-                    print(f"Tabla recorrida, no se encontró {clave}")
-            print(f"Se encontró {clave} en la posición {indice}, despues de {contador} intentos")
+            if self.__tabla[indice]==clave:
+                print(f"Se encontró {clave} en la posición {indice}, despues de {contador} intentos")
+            else:
+                print(f"Tabla recorrida, no se encontró {clave}")
             return self.__tabla
     
     def mostrar(self):
