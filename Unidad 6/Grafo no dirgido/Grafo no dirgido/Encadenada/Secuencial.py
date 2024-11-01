@@ -1,6 +1,6 @@
 import numpy as np
 from collections import deque
-
+from secpila import secuencial
 
 class Secuencial:
     __cvertices: int
