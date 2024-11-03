@@ -24,10 +24,13 @@ class Secuencial:
         else:
             adyacentes = []
             for i in range(self.__numVertices):
-                if self.__matriz[nodo, i] != 0:
+                if self.__matriz[nodo, i] != 0 and self.__matriz[i,nodo] != 0:
                     adyacentes.append(i)
-            for j in range(len(adyacentes)):
-                print(f"Nodo {nodo} tiene un adyacente {adyacentes[j]}")
+            if len(adyacentes) > 0:
+                for j in range(len(adyacentes)):
+                    print(f"Nodo {nodo} tiene un adyacente {adyacentes[j]}")
+            else:
+                print(f"Nodo {nodo} no tiene adyacentes")
                 
     def gradoSalida(self, nodo): #cantidad de aristas que salen de un nodo
         if nodo >= self.__numVertices:
@@ -152,13 +155,15 @@ if __name__ == "__main__":
     
     g.agregarArista(0,1)
     g.agregarArista(0,2)
-    g.agregarArista(0,3)
+    
+    
+    g.agregarArista(2,1)
     
     g.agregarArista(1,3)
     g.agregarArista(1,4)
     g.agregarArista(2,3)
     g.agregarArista(3,4)
-    g.agregarArista(4,1)
+    #g.agregarArista(4,1)
     #g.agregarArista(4,0) #SI LA COLUMNA DEL 0 ES TODO 0, NO RECORRE TODOS LOS VERTUCES
     
     g.mostrar()

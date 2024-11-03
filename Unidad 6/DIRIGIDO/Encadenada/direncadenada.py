@@ -39,7 +39,7 @@ class encadenada:
             actual=self.__arreglo[nodo]
             print(f"Los adyacentes de {nodo} son: " , end="")
             while actual!=None:
-                print(actual.getDato(), end="->")
+                print(actual.getDato(), end="->")#AGREGAR LA CORRECCION DE QUE SEA ARISTA IDA Y VUELTA
                 actual=actual.getSig()
     
     def gradoSalida(self, nodo):
@@ -196,6 +196,8 @@ if __name__== "__main__":
     e.insertar(2,3)
     
     e.insertar(3,4)
+    e.insertar(4,2)
+    e.insertar(4,1)
 
     
     e.mostrar()

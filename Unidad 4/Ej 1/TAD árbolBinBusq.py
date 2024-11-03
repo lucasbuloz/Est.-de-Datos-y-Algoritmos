@@ -196,13 +196,15 @@ if __name__=="__main__":
     arbol.insertar(arbol.getraiz(), nuevo)
     nuevo=Nodo(9)
     arbol.insertar(arbol.getraiz(), nuevo)
-    nuevo=Nodo(4)
-    arbol.insertar(arbol.getraiz(), nuevo)
+    
 
     
-   
-   
     arbol.inorden(arbol.getraiz())
+    
+    """print ("----Eliminar----")
+    arbol.eliminar(arbol.getraiz(), 25)
+    arbol.inorden(arbol.getraiz())"""
+    
     print (f"El 9 es hoja: {arbol.hoja(9)}")
     print (f"El 20 es hoja: {arbol.hoja(20)}")
     print (f"El nivel de 9: {arbol.nivel(arbol.getraiz(),9,0)}")
