@@ -29,13 +29,14 @@ class TablaHashEnncadenamiento:
         indice = self.divisionesSucesivas(clave)
         actual = self.__tabla[indice]
         i=0
-        try:
-            while actual.getDato() != clave and actual.getSig() != None:
+        
+        while actual.getDato() != clave and actual.getSig() != None:
                 actual = actual.getSig()
                 i+=1
-            print(f"Clave {clave} encontrada en la posicion {indice} en el nodo {i}")
-        except IndexError:
-            print(f"No se encontro la clave {clave}")
+        if actual.getDato() == clave:
+                print(f"Clave {clave} encontrada en la posicion {indice} en el nodo {i}")
+        else:
+                print(f"No se encontro la clave {clave}")
         
     def mostrar(self):
        for i in range(self.__tamano):

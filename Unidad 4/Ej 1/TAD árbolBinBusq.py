@@ -33,7 +33,7 @@ class ArbolBinarioBusqueda:
         else:
             return self.buscar(xraiz.getder(), valor)
         
-        
+        #Y si elimino la raiz? hay error
     def eliminar(self, nodo, valor):
         if self.__raiz == None:
             return
@@ -65,7 +65,7 @@ class ArbolBinarioBusqueda:
     def nivel(self, xraiz, valor, nivel):
         if xraiz == None:
             return -1
-        if xraiz.get_dato() == valor:
+        elif xraiz.get_dato() == valor:
             return nivel
         elif valor < xraiz.get_dato():
             return self.nivel(xraiz.getizq(), valor, nivel+1)
@@ -91,7 +91,9 @@ class ArbolBinarioBusqueda:
         if xraiz == None:
             return False
         elif xraiz.get_dato() == hijo:
-            return padre.get_dato() if padre != None else None
+            if padre != None:
+                return padre.get_dato() 
+            else: return None 
         elif hijo < xraiz.get_dato():
             return self.padre(xraiz.getizq(), hijo, xraiz)
         else:
@@ -156,7 +158,7 @@ class ArbolBinarioBusqueda:
         if nodo!=None:
             self.hermanos(nodo.getizq())
             if nodo.grado()==2:
-                print(nodo.getizq().get_dato(),      nodo.getder().get_dato())
+                print(f"{nodo.getizq().get_dato()} y {nodo.getder().get_dato()}")
             self.hermanos(nodo.getder())
         
         
@@ -198,18 +200,19 @@ if __name__=="__main__":
     arbol.insertar(arbol.getraiz(), nuevo)
     
 
+
     
+   
+   
     arbol.inorden(arbol.getraiz())
-    
     """print ("----Eliminar----")
-    arbol.eliminar(arbol.getraiz(), 25)
+    arbol.eliminar(arbol.getraiz(), 20)
     arbol.inorden(arbol.getraiz())"""
-    
     print (f"El 9 es hoja: {arbol.hoja(9)}")
     print (f"El 20 es hoja: {arbol.hoja(20)}")
     print (f"El nivel de 9: {arbol.nivel(arbol.getraiz(),9,0)}")
     
-    print (f"El camino a 9: {arbol.camino( 9)}")
+    print (f"El camino a 9: {arbol.camino( 4)}")
     print (f"ALtura del arbol: {arbol.altura(arbol.getraiz())}")
     
     print (f"El 9 es hijo de 10: {arbol.hijo(10, 9)}")
