@@ -68,15 +68,13 @@ class DireccionamientoAbierto:
 if __name__ == "__main__":
     dir = DireccionamientoAbierto(100,0.7 )
     
-    """dir.generarclaves()
+    dir.generarclaves()
     
     for _ in range(70):
         dir.insertar(dir.generarclaves())
-    #dir.mostrar()
+    dir.mostrar()
     busq=int(input("Ingrese clave a buscar: "))
-    dir.buscar(busq)"""
-    
-    dir.extraccion(45635652)
+    dir.buscar(busq)
     
     
     

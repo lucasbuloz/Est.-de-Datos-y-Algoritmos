@@ -51,22 +51,20 @@ class Buckets:
             
     def buscar(self,clave):
         indice=self.division(clave)
-        tamaño=int (self.__tamaño*0.8)
         i=0
-        indiceoverflow=tamaño
         
         while i<self.__buckets:
             if self.__tabla[indice][i]==clave:
                 return print(f"clave {clave} encontrada en el area primaria indice {indice}")
             i+=1
         
-        while indiceoverflow<self.__tamaño:
+        while self.__indiceoverflow<self.__tamaño:
             i=0
             while i<self.__buckets:
-                if self.__tabla[indiceoverflow][i]==clave:
-                    return print(f"clave {clave} encontrada en el area overflow indice {indiceoverflow}")
+                if self.__tabla[self.__indiceoverflow][i]==clave:
+                    return print(f"clave {clave} encontrada en el area overflow indice {self.__indiceoverflow}")
                 i+=1
-            indiceoverflow+=1
+            self.__indiceoverflow+=1
         
         
             
