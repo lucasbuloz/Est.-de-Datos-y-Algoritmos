@@ -52,6 +52,7 @@ class encadenada:
                 contador+=1
                 actual=actual.getSig()
             print(f"\n El vertice {nodo} tiene grado de salida {contador}")
+            return contador
 
     def gradoEntrada(self, nodo):
         if nodo>=self.__cvertices:
@@ -65,9 +66,10 @@ class encadenada:
                         contador += 1
                     actual = actual.getSig()
             print(f"\n El vertice {nodo} tiene grado de entrada {contador}")
+            return contador
 
     def nodoFuente(self, nodo):
-        if self.gradoEntrada(nodo) == 0:
+        if self.gradoEntrada(nodo) == 0 and self.gradoSalida(nodo) >= 0:
             print(f"nodo {nodo} es fuente")
             return True
         else:
@@ -75,7 +77,7 @@ class encadenada:
             return False
 
     def nodoSumidero(self, nodo):
-        if self.gradoSalida(nodo) == 0:
+        if self.gradoSalida(nodo) == 0 and self.gradoEntrada(nodo) >= 0:
             print(f"nodo {nodo} es sumidero")
             return True
         else:
@@ -205,7 +207,8 @@ if __name__== "__main__":
     e.adyacentes(4)
     
     e.gradoSalida(1)
-    e.gradoEntrada(0)
+    e.gradoSalida(3)
+    e.gradoEntrada(3)
 
     e.nodoFuente(0)
     e.nodoSumidero(3)

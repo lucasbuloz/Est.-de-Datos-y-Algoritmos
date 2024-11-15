@@ -71,15 +71,15 @@ class Secuencial:
             return False
 
             
-    def camino(self, inicio, fin):
+    """def camino(self, inicio, fin):
         if inicio >= self.__numVertices or fin >= self.__numVertices:
             raise ValueError("El origen o el destino no es válido")
         else:
             visitados = [False] * self.__numVertices #crea una lista con la cantidad de vertices en false
-            pila = [(inicio, [inicio])] #pila que contiene el nodo actual y el camino hasta el nodo actual
+            p =Pila[(inicio, [inicio])] #pila que contiene el nodo actual y el camino hasta el nodo actual
             
-            while pila:
-                nodoActual, caminoActual = pila.pop()
+            while p:
+                nodoActual, caminoActual = p.suprimir()
                 print(f"camino {caminoActual} del nodo actual {nodoActual}")
                 if nodoActual == fin:
                     return caminoActual
@@ -89,21 +89,21 @@ class Secuencial:
                     
                     for i in range(self.__numVertices):
                         if self.__matriz[nodoActual, i] == 1 and not visitados[i]:
-                            pila.append((i, caminoActual + [i]))
+                            p.insertar((i, caminoActual + [i]))
                             
-                            
+
     def conexo(self): #profundidad
         visitados = [False] * self.__numVertices
-        pila = [0]
+        p = Pila[0]
         
-        while pila:
-            vertice = pila.pop() #amplitud es popleft
+        while p:
+            vertice = p.suprimir() 
             if not visitados[vertice]:
                 visitados[vertice] = True
                 for i in range(self.__numVertices):
                     if self.__matriz[vertice][i] == 1 and not visitados[i]:
-                        pila.append(i)
-        return all(visitados)
+                        p.insertar(i)
+        return all(visitados)"""
 
     def aciclico(self):
         visitados = [False] * self.__numVertices
@@ -148,6 +148,21 @@ class Secuencial:
         print (visitados)
 
         return all(visitados)#NO ESTA VISITANDO A TODOS LOS VERTICES, ALGO PASA CUANDO UNA FINA ES TODO 0   
+    
+    def fuentes(self):
+        visitados = [False] * self.__numVertices
+        p = [0]
+        
+        while p:
+            vertice = p.pop() 
+            if self.gradoEntrada(vertice) == 0 and self.gradoSalida(vertice) > 0:
+                print(f"nodo {vertice} es fuente")
+            if not visitados[vertice]:
+                visitados[vertice] = True
+                for i in range(self.__numVertices):
+                    if self.__matriz[vertice][i] == 1 and not visitados[i]:
+                        p.append(i)
+        
 
 
 if __name__ == "__main__":
@@ -174,12 +189,12 @@ if __name__ == "__main__":
     g.nodoFuente(0)
     g.nodoSumidero(3)
     
-    g.camino(0, 4)
+    #g.camino(0, 4)
     
-    if g.conexo():
+    """#if g.conexo():
         print("grafo conexo")
     else:
-        print("no es conexo")
+        print("no es conexo")"""
 
     if g.aciclico():
         print("grafo aciclico")
@@ -197,3 +212,5 @@ if __name__ == "__main__":
     if g.BEA( b)!=False:
         print ("Todos los vertices visitados")
     else:  print ("No todos los vertices fueron visitados")
+    
+    g.fuentes()
