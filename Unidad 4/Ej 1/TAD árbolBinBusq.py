@@ -208,7 +208,7 @@ if __name__=="__main__":
     """print ("----Eliminar----")
     arbol.eliminar(arbol.getraiz(), 20)
     arbol.inorden(arbol.getraiz())"""
-    print (f"El 9 es hoja: {arbol.hoja(9)}")
+    """print (f"El 9 es hoja: {arbol.hoja(9)}")
     print (f"El 20 es hoja: {arbol.hoja(20)}")
     print (f"El nivel de 9: {arbol.nivel(arbol.getraiz(),9,0)}")
     
@@ -225,5 +225,9 @@ if __name__=="__main__":
     print ("--------")
     arbol.hermanos(arbol.getraiz())
     print ("--------")
-    arbol.unhijo(arbol.getraiz())
+    arbol.unhijo(arbol.getraiz())"""
     
+    print ("--------")
+    arbol.preorden(arbol.getraiz())
+    print ("--------")
+    arbol.postorden(arbol.getraiz())
